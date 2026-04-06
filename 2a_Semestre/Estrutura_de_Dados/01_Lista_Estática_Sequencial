@@ -1,1 +1,53 @@
+/*
+========== LISTA ESTÁTICA SEQUENCIAL ==========
 
+lista Estática Sequencial -> elementos são consecutivos
+Lista Estática Encadeada -> elementos não consecutivos, mas ligados por meio de ponteiros
+
+Vantagens
+- Acesso direto indexado a qualquer elemento da Lista
+- Tempo constante para acessar o elemento i - dependerá somente do índice
+ Desvantagem
+ - Movimentação quando eliminado/inserido elemento
+ - Tamanho máximo pré-estimado
+ 
+ Quando usar:
+ - Listas pequenas
+ - Inserção/remoção no fim da Lista
+ - Tamanho máximo bem definido
+ 
+ OPERAÇÕES
+ - Retornar o tamanho da lista
+ - Retornar a posição de dado elemento
+ - Retornar toda a lista
+ - Verificar se a lista está vazia
+ - Verificar se a lista está cheia
+ - Criar uma lista vazia
+ - Apagar uma lista
+ - Inserir elemento numa certa posição da lista
+ - Inserir elemento de forma ordenada
+ - Busca Linear: verifica se chegou no fim da lista e se o elemento atual é o foco
+ - Busca Sentinela: verifica se o elemento atual. O Sentinela é o valor do foco na última posição 
+ que garante que o loop de verificação não seja infinito. Assim, se o índice for igual ao do sentinela, não há
+ o elemento de foco na lista original.
+ - Busca Binária: verifique o meio da lista > se o elemento do meio for o alvo, a busca termina, se for menor, 
+ vc descanta toda a metade direita e repete o processo, e vice-versa se maior.
+*/
+
+#include<stdio.h>
+#include<stdlib.h>
+
+#define MAX 10 // MAX = 10
+
+
+// DEFINIR A ESTRUTURA DA LISTA SEQUENCIAL ESTÁTICA
+typedef struct{
+    int itens[MAX]; //O array com os elementos
+    int quantidade; // quantidade máxima de elementos
+} LSE;
+
+int main(){
+
+    
+    return 0;
+}
