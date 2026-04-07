@@ -81,13 +81,21 @@ void insertPosition(LSE * list, int value, int position){
 }
 
 void delete(LSE * list, int value){
-    int aux = -1;
-    for(int i = 0; i < list->quantidade; i++){
+    int i = 0;
+    for(i; i < list->quantidade; i++){   //Loop para posicionar i 
         if(list->itens[i] == value){
-            
+            break;
         }
     }
-    
+    if(i == list->quantidade){
+        printf("O valor não está presente na lista para ser removido. Tente novamente.");
+        return;
+    }else{
+        for(i; i < list->quantidade - 1; i++){   //Loop para apagar o valor
+            list->itens[i] = list->itens[i + 1];
+        }
+        list->quantidade--;
+    }
 }
 
 int main(){
@@ -128,13 +136,15 @@ int main(){
         }else if(choice == 3){
             printf("Digite o valor que deseja adicionar: ");
             scanf("%d", &valor);
-            printf("Digite a posição que deseja inserir: ");
-            scanf("%d", &posicao);
+            if(l.quantidade != 0){
+                printf("Digite a posição que deseja inserir: ");
+                scanf("%d", &posicao);
+            }
             insertPosition(&l, valor, posicao);
         }else if(choice == 4){
             printf("Digite o elemento que deseja remover: ");
             scanf("%d", &valor);
-            
+            delete(&l, valor);
         }
     }
     return 0;
