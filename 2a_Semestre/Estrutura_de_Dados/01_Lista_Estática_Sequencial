@@ -46,8 +46,40 @@ typedef struct{
     int quantidade; // quantidade máxima de elementos
 } LSE;
 
-int main(){
+void printList(LSE list){
+    printf("\nLista\n");
+    if(list.quantidade == 0){
+        printf("Sem elementos.\n");
+    }
+    else{
+        for(int i = 0; i < list.quantidade; i++){
+        printf("Posição %d - %d \n", i, list.itens[i]);
+        }
+    }
+}
 
-    
+int main(){
+    LSE l;
+    l.quantidade = 0;
+
+    while(1){
+        int choice;
+        printf("\n\n========== LISTA SEQUÊNCIAL ESTÁTICA ==========\n\n");
+        printList(l);
+        printf("\n ---------- OPERAÇÕES -----------\n"
+            "GERENCIAMENTO DO SISTEMA\n"
+            "0 - Desligar o sistema.\n"
+            "1 - Acessar as informações básicas da lista atual\n"
+            "Ação: "
+        );
+        scanf("%d", &choice);
+        if(choice == 0){
+            printf("Desligando o sistema ... . Obrigada pela atenção.");
+            break;
+        }
+        else if(choice == 1){
+            printf("\n Tamanho da Lista: %d", l.quantidade);
+        }
+    }
     return 0;
 }
