@@ -25,7 +25,6 @@ Vantagens
  - Criar uma lista vazia
  - Apagar uma lista
  - Inserir elemento numa certa posição da lista
- - Inserir elemento de forma ordenada
 */
 
 #include<stdio.h>
@@ -47,7 +46,7 @@ void printList(LSE list){
     }
     else{
         for(int i = 0; i < list.quantidade; i++){
-        printf("%d\t", i, list.itens[i]);
+        printf("%d\t", list.itens[i]);
         }
         printf("\n");
     }
@@ -61,12 +60,42 @@ int searchPosition(LSE list, int value){
     return i;
 }
 
+void insertPosition(LSE * list, int value, int position){
+    if(list->quantidade == 0){
+        list->itens[0] = value;
+        list->quantidade++;
+    }else if(list->quantidade == MAX){
+        printf("A lista está cheia. Retire algumas antes de tentar de novo.\n");
+    }else if(position > list->quantidade){
+        printf("Há apenas %d elementos. Sua posição não se encaixa entre os elementos. Tente novamente.", list->quantidade);
+    }else if(position < 0){
+        printf("Não aceitamos posições com número negativo. Tente novamente.");
+    }else{
+        int i = list->quantidade - 1;
+        for(i; i >= position; i--){
+            list->itens[i + 1] = list->itens[i];
+            }   
+        list->itens[i + 1] = value;
+        list->quantidade++;
+    }
+}
+
+void delete(LSE * list, int value){
+    int aux = -1;
+    for(int i = 0; i < list->quantidade; i++){
+        if(list->itens[i] == value){
+            
+        }
+    }
+    
+}
+
 int main(){
     LSE l;
     l.quantidade = 0;
 
     while(1){
-        int choice, valor;
+        int choice, valor, posicao;
         printf("\n\n========== LISTA SEQUENCIAL ESTATICA ==========\n\n");
         printList(l);
         printf("\n ---------- OPERAÇÕES -----------\n\n"
@@ -74,7 +103,7 @@ int main(){
             "1 - Acessar as informações básicas da lista atual\n"
             "2 - Acessar a posição de certo valor\n"
             "3 - Inserir elemento em certa posição\n"
-            "4 - Inserir elemento de forma ordenada\n\n"
+            "4 - Remover elemento\n\n"
             "Ação: "
         );
         scanf("%d", &choice);
@@ -99,6 +128,13 @@ int main(){
         }else if(choice == 3){
             printf("Digite o valor que deseja adicionar: ");
             scanf("%d", &valor);
+            printf("Digite a posição que deseja inserir: ");
+            scanf("%d", &posicao);
+            insertPosition(&l, valor, posicao);
+        }else if(choice == 4){
+            printf("Digite o elemento que deseja remover: ");
+            scanf("%d", &valor);
+            
         }
     }
     return 0;
