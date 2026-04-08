@@ -1,0 +1,114 @@
+/*
+========== LISTA ENCADEADA ESTÁTICA ==========
+
+Vantagens
+- Acesso rápido em cache, já que os elementos esão no mesmo bloco de memória
+- Quantidade de memória pré-determinada
+- Não há risco de esquecer de dar free()
+
+Desvantagens
+- Tamanho fixo de memória
+- Gerenciamento manual dos índices
+*/
+
+#include<stdio.h>
+#include<stdlib.h>
+#define MAX 10   //Tamanha máximo definido em 10
+
+//ESTRUTURA DE CADA NÓ ESTÁTICA
+
+typedef struct {
+    int item;
+    int prox;   //índice do próximo elemento
+} No;
+
+//ESTRUTURA DA LISTA QUE ORGANIZA OS NÓS
+
+typedef struct {
+    No nos[MAX];   //O espaço de memória fixo
+    int inicio;   //Indice onde começa a lista com dados
+    int disponivel;   //Indice do primeiro espaço vazio para uso
+} LEE;
+
+void setList(LEE * list){
+    //Configurar para que cada prox aponte para o próximo índice
+    for(int i = 0; i < MAX - 1; i++){
+        list->nos[i].prox = i + 1;
+    }
+    
+    //O último nó aponta para o vazio;
+    list->nos[MAX-1].prox = -1;
+    
+    //A lista de dados começa vazia
+    list->inicio = -1;
+    
+    //O primeiro espaço livre é o índice 0
+    list->disponivel = 0;
+}
+
+int getNode(LEE * list){
+    if(list->disponivel == -1){
+        printf("A lista está cheia. Tente novamente.");
+        return -1;
+    }else{
+        No newNode = list->disponivel;
+        list->disponivel = nos[newNode].prox;
+        return newNode;
+        }
+}
+
+void insertPosition(LEE * list, int value, int pos){
+    //caso01 - lista cheia
+    if(list->disponivel == -1){
+        printf("A lista está cheia. Tente novamente.");
+        return;
+    }else{
+        newNode = list->disponivel;
+        list->disponivel = list->nos[newNode].prox;
+        
+        
+    }
+    
+}
+
+int main(){
+    int acao, valor, posicao;
+    
+    //Declarando a minha LEE
+    LEE minhaLista;
+    
+    //Inicializando a minha LEE
+    setList(&minhaLista)
+    
+    while(1){
+        printf("\n\n========== LISTA ENCADEADA ESTÁTICA ==========\n\n");
+        
+        printf("\n---------- OPERAÇÕES ----------\n"
+            "0 - Desligar o sistema\n"
+            "1 - Adicionar elemento na lista na posição desejada\n"
+            "2 - Remover elemento da lista\n\n"
+            "Ação: ");
+        scanf("%d", &acao);
+        
+        if(acao == 0){
+            printf("Desligando o sistema ... . Obrigada pela atenção.");
+            break;
+            
+        }else if(acao == 1){
+            printf("Digite o elemento que deseja adicionar: ");
+            scanf("%d", &valor);
+            if(minhaLista.inicio != 0){
+                printf("Digite a posição que deseja colocae: ");
+                scanf("%d", &posicao);
+                if(posicao < 0){
+                    printf("A posição deve ser um número igual ou maior que zero. Tente novamente.");
+                    break;
+                }
+                insertPosition(&minhaLista, valor, posicao);
+            }else{
+                insertPosition(&minhaLista, valor, 0);
+            }
+        }
+    }
+    return 0;
+}
